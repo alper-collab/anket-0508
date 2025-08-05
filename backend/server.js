@@ -1,8 +1,8 @@
-// Gerekli kütüphaneleri içeri aktar
-const express = require('express');
-const nodemailer = require('nodemailer');
-const cors = require('cors'); // CORS kütüphanesini etkinleştir
-require('dotenv').config(); // .env dosyasındaki değişkenleri yükler
+// Gerekli kütüphaneleri modern ES Modülü sözdizimiyle içeri aktar
+import express from 'express';
+import nodemailer from 'nodemailer';
+import cors from 'cors';
+import 'dotenv/config'; // .env dosyasındaki değişkenleri yükler
 
 // Express uygulamasını başlat
 const app = express();
@@ -29,13 +29,16 @@ app.post('/api/send-feedback', async (req, res) => {
 
   // --- SMTP Configuration ---
   // Dekorla.co mail sunucusu için doğru SMTP bilgileri girildi.
+  // GÜVENLİK NOTU: Şifre (pass) artık doğrudan koda yazılmıyor.
+  // Hosting servisinizin (Render, Heroku vb.) "Environment Variables" bölümünden
+  // SMTP_PASS adında bir değişken oluşturularak oraya girilmelidir.
   const smtpConfig = {
     host: 'mail.dekorla.co',
     port: 587,
     secure: false, // port 587 için STARTTLS kullanılır
     auth: {
       user: 'info@dekorla.co',
-      pass: 'Bella197265!',
+      pass: process.env.SMTP_PASS, // Şifreyi güvenli bir şekilde ortam değişkeninden al
     },
     // Gerekli olmadıkça TLS doğrulamasını atlamamak en güvenlisidir.
     // tls: {
