@@ -1,0 +1,217 @@
+/* General Resets and Body Styles */
+:root {
+  --primary-bg: #FAF7C4; /* from quiz welcome/loading screen */
+  --form-bg: #ffffff;
+  --text-color-dark: #1f2937; /* Tailwind gray-800 */
+  --text-color-medium: #4b5563; /* Tailwind gray-600 */
+  --border-color: #d1d5db; /* Tailwind gray-300 */
+  --button-bg: #1f2937; /* Tailwind gray-800 */
+  --button-hover-bg: #374151; /* Tailwind gray-700 */
+  --focus-ring-color: rgba(55, 65, 81, 0.5);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: 'Instrument Sans', sans-serif;
+  background-color: var(--primary-bg);
+  color: var(--text-color-dark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  line-height: 1.6;
+}
+
+/* App Container */
+.app-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 2rem 0;
+  padding: 2.5rem 3rem;
+  background-color: var(--form-bg);
+  border-radius: 1rem; /* 16px */
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /* shadow-lg */
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Logo */
+.logo {
+  height: 40px;
+  width: auto;
+  margin: 0 auto 1.5rem;
+}
+
+/* Header */
+header h1 {
+  font-size: 2.25rem; /* ~text-4xl */
+  font-weight: 700;
+  color: var(--text-color-dark);
+  margin-bottom: 0.75rem;
+}
+
+header p {
+  font-size: 1.125rem; /* ~text-lg */
+  color: var(--text-color-medium);
+  margin-bottom: 2.5rem;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Form Styling */
+.survey-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: left;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem; /* 14px */
+  color: var(--text-color-medium);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 0.5rem; /* 8px, like rounded-lg */
+  font-size: 1rem;
+  font-family: 'Instrument Sans', sans-serif;
+  color: var(--text-color-dark);
+  background-color: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #9ca3af; /* Tailwind gray-400 */
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--button-bg);
+  box-shadow: 0 0 0 3px var(--focus-ring-color);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+/* Submit Button */
+.submit-btn {
+  background-color: var(--button-bg);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.5rem; /* rounded-lg */
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-family: 'Instrument Sans', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 1rem;
+  text-align: center;
+  width: 100%;
+}
+
+.submit-btn:hover {
+  background-color: var(--button-hover-bg);
+  transform: scale(1.03);
+}
+
+.submit-btn:active {
+  transform: scale(1);
+}
+
+/* Accessibility */
+.submit-btn:focus-visible {
+  outline: 3px solid var(--focus-ring-color);
+  outline-offset: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  body {
+    align-items: flex-start;
+  }
+  .app-container {
+    margin: 1rem 0;
+    padding: 2rem 1.5rem;
+  }
+
+  header h1 {
+    font-size: 1.875rem; /* ~text-3xl */
+  }
+
+  header p {
+    font-size: 1rem;
+  }
+}
+
+/* Spinner for loading states */
+.spinner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2rem 0;
+    color: var(--text-color-medium);
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border-left-color: var(--button-bg);
+    animation: spin 1s ease infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Error and Retry */
+.error-container {
+    background-color: #fff1f2; /* Rose 50 */
+    border: 1px solid #ffdde0; /* Rose 100 */
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.error-message {
+    color: #be123c; /* Rose 700 */
+    font-weight: 500;
+}
