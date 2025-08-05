@@ -19,7 +19,7 @@ const App = () => {
     setStatus('sending');
 
     try {
-      const response = await fetch('/api/send-feedback', {
+      const response = await fetch('https://anket-0508.onrender.com/api/send-feedback', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, ideas }),
